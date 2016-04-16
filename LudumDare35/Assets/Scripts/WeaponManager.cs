@@ -33,6 +33,8 @@ public class WeaponManager : MonoBehaviour
 
 			shotTransform.position = transform.position;
 
+			shotTransform.SetParent (this.transform);
+
 			ShotScript shot = shotTransform.gameObject.GetComponent<ShotScript>();
 			if (shot != null)
 			{

@@ -1,11 +1,12 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/PlayerManager.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/WeaponManager.cs">
     <Files>
-      <File FileName="Assets/Scripts/PlayerManager.cs" Line="40" Column="24" />
-      <File FileName="Assets/Scripts/WeaponManager.cs" Line="9" Column="33" />
+      <File FileName="Assets/Scripts/PlayerManager.cs" Line="93" Column="23" />
+      <File FileName="Assets/Scripts/WeaponManager.cs" Line="31" Column="4" />
       <File FileName="Assets/Scripts/MovementScript.cs" Line="28" Column="28" />
       <File FileName="Assets/Scripts/ShotScript.cs" Line="15" Column="1" />
+      <File FileName="Assets/Scripts/ScrollingScript.cs" Line="22" Column="3" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
