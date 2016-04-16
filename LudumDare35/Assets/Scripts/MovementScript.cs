@@ -4,10 +4,10 @@
 public class MovementScript : MonoBehaviour
 {
 
-	public Vector2 speed = new Vector2(10, 10);
+	public Vector2 speed;
 
 
-	public Vector2 direction = new Vector2(-1, 0);
+	public Vector2 direction;
 
 	private Vector2 movement;
 
