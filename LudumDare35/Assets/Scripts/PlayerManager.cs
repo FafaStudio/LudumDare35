@@ -21,11 +21,14 @@ public class PlayerManager : MonoBehaviour {
 
 	void Start () {
 		body = GetComponent<Rigidbody2D> ();
+
 	}
 
 	void Update () {
 		calculMovement ();
 		shoot ();
+
+		transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, 0, 0);
 	}
 
 	void FixedUpdate(){
