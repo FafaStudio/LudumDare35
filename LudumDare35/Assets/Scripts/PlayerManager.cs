@@ -8,6 +8,7 @@ public class PlayerManager : MonoBehaviour {
 	public Vector2 speed = new Vector2(20f, 20f); 
 	private float movementX = 10f;
 	private float movementY = 10f;
+	public int pv;
 
 	private Animator animManager;
 
@@ -89,6 +90,23 @@ public class PlayerManager : MonoBehaviour {
 
 	private void doMovement(){
 		body.velocity = speed;
+	}
+
+	//GESTION VIE________________________________________________________________________________________________________________
+
+	public void takeDamage(int nbr)
+	{
+		this.pv -= nbr;
+
+	}
+
+	public void estMort()
+	{
+		if (this.pv == 0) {
+			//DEMERDE SIE SICH
+			print("ALLOW T MOR LOL");
+		}
+
 	}
 
 	//COLLISION________________________________________________________________________________________________________________
