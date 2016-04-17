@@ -19,7 +19,7 @@ public class EnemyArcCercleScript : EnemyScript {
 	}
 	// Use this for initialization
 	void Start () {
-		x = 1;
+		x = 0.5f;
 		y = 0;
 		xDirection = false;
 		this.pv = 5;
@@ -31,20 +31,20 @@ public class EnemyArcCercleScript : EnemyScript {
 	void Update () {
 
 		if (!xDirection) {
-			x = x + 0.015f;
-			if (x >3.0f) {
+			x = x + 0.02f;
+			if (x >2f) {
 
 				xDirection = true;
 			}
 		} else {
-			x = x - 0.05f;
+			x = x - 0.02f;
 
 		}
 
-		y = y + 0.02f;
+		y = y + 0.01f;
 
 
-		if ((x < 0) && (y > 6)) {
+		if ((x < 0) && (y > 10)) {
 			Destroy (this.gameObject);
 
 		}
@@ -60,8 +60,7 @@ public class EnemyArcCercleScript : EnemyScript {
 
 			if (chrono <= 0) {
 				var shotTransformEnemy = Instantiate(tirEnemy, this.transform.position, Quaternion.identity) as Transform;
-				shotTransformEnemy.GetComponent<MovementScript> ().direction = new Vector2(playa.transform.position.x,playa.transform.position.y);
-				print (new Vector2(playa.transform.position.x, playa.transform.position.y));
+				//print (new Vector2(playa.transform.position.x, playa.transform.position.y));
 				chrono = maxChrono;
 			}
 		}
