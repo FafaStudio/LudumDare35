@@ -28,23 +28,25 @@ public class WeaponManager : MonoBehaviour
 		if (CanAttack)
 		{
 			shootCooldown = shootingRate;
-
 			var shotTransform = Instantiate(shotPrefab) as Transform;
-
 			shotTransform.position = transform.position;
-
-			shotTransform.SetParent (this.transform);
 
 			ShotScript shot = shotTransform.gameObject.GetComponent<ShotScript>();
 			if (shot != null)
 			{
 				shot.isEnemyShot = isEnemy;
+				if (!shot.isEnemyShot) {
+					Vector3 bullPosition = new Vector3 (transform.position.x + 1f, transform.position.y-0.1f, 0f);
+					shotTransform.position = bullPosition;
+				}
 			}
 
 			// On saisit la direction pour le mouvement
 			MovementScript move = shotTransform.gameObject.GetComponent<MovementScript>();
 			if (move != null)
 			{
+				if (shot.isEnemyShot)
+					return;
 				move.direction = this.transform.right; // ici la droite sera le devant de notre objet
 			}
 		}

@@ -2,7 +2,11 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/EnemyScript.cs">
     <Files>
-      <File FileName="Assets/Scripts/EnemyScript.cs" Line="23" Column="17" />
+      <File FileName="Assets/Scripts/EnemyScript.cs" Line="19" Column="2" />
+      <File FileName="Assets/Scripts/PlayerManager.cs" Line="112" Column="4" />
+      <File FileName="Assets/Scripts/WeaponManager.cs" Line="34" Column="45" />
+      <File FileName="Assets/SpawnerManager.cs" Line="22" Column="34" />
+      <File FileName="Assets/Scripts/MovementScript.cs" Line="12" Column="27" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -9,6 +9,10 @@ public class PlayerManager : MonoBehaviour {
 	private float movementX = 10f;
 	private float movementY = 10f;
 
+	private Animator animManager;
+
+	private WeaponManager weapon;
+
 	//private float inputX = 0f;
 	//private float inputY = 0f;
 
@@ -20,7 +24,10 @@ public class PlayerManager : MonoBehaviour {
 	//AWAKE, START, UPDATE...______________________________________________________________________________________________
 
 	void Start () {
+		animManager = this.GetComponent<Animator> ();
 		body = GetComponent<Rigidbody2D> ();
+		weapon = this.GetComponent<WeaponManager> ();
+		this.weapon.shotPrefab.localScale = new Vector3 (1f, 1f, 1f);
 
 	}
 
@@ -86,19 +93,26 @@ public class PlayerManager : MonoBehaviour {
 
 	//COLLISION________________________________________________________________________________________________________________
 
-	void OnCollisionEnter2D(Collision2D col){
+	void OnTriggerEnter2D(Collider2D col){
+		if (col.gameObject.tag == "PowerUp") {
+			this.weapon.shotPrefab.localScale = new Vector3 (weapon.shotPrefab.localScale.x + 0.2f, weapon.shotPrefab.localScale.y + 0.2f, weapon.shotPrefab.localScale.z);
+			Destroy (col.gameObject);
+		}
 	}
 
 
 	public void shoot(){
 		if (Input.GetKey (KeyCode.Space)) {
+			animManager.SetBool ("Firing", true);
 			WeaponManager weapon = GetComponent<WeaponManager>();
 			if (weapon != null)
 			{
 				weapon.Attack(false);
 			}
 		}
-	}
+		if(Input.GetKeyUp(KeyCode.Space))
+			animManager.SetBool("Firing", false);
+	} 
 
 }
 

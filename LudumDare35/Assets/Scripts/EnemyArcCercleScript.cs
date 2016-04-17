@@ -61,7 +61,6 @@ public class EnemyArcCercleScript : EnemyScript {
 			if (chrono <= 0) {
 				var shotTransformEnemy = Instantiate(tirEnemy, this.transform.position, Quaternion.identity) as Transform;
 				shotTransformEnemy.GetComponent<MovementScript> ().direction = new Vector2(playa.transform.position.x,playa.transform.position.y);
-				print (new Vector2(playa.transform.position.x, playa.transform.position.y));
 				chrono = maxChrono;
 			}
 		}
