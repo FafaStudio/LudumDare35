@@ -56,8 +56,8 @@ public class EnemyArcCercleScript : EnemyScript {
 				anim.SetTrigger ("Firing");
 				chrono = maxChrono;
 				var instantiatedProjectile = Instantiate(tirEnemy,transform.position,transform.rotation)as Transform;
-				//instantiatedProjectile.LookAt (playa.transform);
-				//instantiatedProjectile.rotation = Quaternion.Euler (-instantiatedProjectile.rotation.x, -instantiatedProjectile.rotation.y,0f);
+				//instantiatedProjectile.LookAt (playa.transform, Vector3.back);
+				instantiatedProjectile.rotation = Quaternion.Euler (0f, 0f, 180 + (Mathf.Atan2((playa.transform.position.y - this.transform.position.y), (playa.transform.position.x - this.transform.position.x)) * Mathf.Rad2Deg));
 				if (playa != null)
 					instantiatedProjectile.GetComponent<Rigidbody2D> ().velocity = (playa.transform.position - transform.position).normalized * 8f;
 				else
