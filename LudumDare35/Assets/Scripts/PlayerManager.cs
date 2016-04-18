@@ -36,9 +36,10 @@ public class PlayerManager : MonoBehaviour {
 
 	//AWAKE, START, UPDATE...______________________________________________________________________________________________
 	void Awake(){
+		camera = GameObject.FindWithTag ("MainCamera").GetComponent<CameraManager> ();
 		spawner = GameObject.Find("Spawner").GetComponent<SpawnChief>();
 		uiPlayer = GameObject.Find ("UI").GetComponent<PlayerUI> ();
-		camera = GameObject.FindWithTag ("MainCamera").GetComponent<CameraManager> ();
+		//camera = GameObject.FindWithTag ("MainCamera").GetComponent<CameraManager> ();
 	}
 	void Start () {
 		animManager = this.GetComponent<Animator> ();
@@ -117,9 +118,11 @@ public class PlayerManager : MonoBehaviour {
 	public IEnumerator launchShapeshift(){
 		camera.setShake (1.2f);
 		spawner.maxCompteurWave = 5f;
+		spawner.playerIsDead = true;
 		var explo = Instantiate (explosion.transform, this.transform.position, Quaternion.identity) as Transform;
 		animManager.SetBool ("isDead", true);
-		yield return new WaitForSeconds (0.3f);
+		yield return new WaitForSeconds (0.5f);
+		spawner.playerIsDead = false;
 		GameObject nextTransfo = Instantiate (nextTransformation, this.transform.position, Quaternion.identity) as GameObject;
 		Destroy (this.gameObject);
 	}

@@ -5,8 +5,10 @@ public class EnemyTeteChercheuse : EnemyScript {
 
 	protected GameObject playa;
 	private bool cherche = false;
+	private Animator anim;
 
 	void Awake () {
+		anim = this.GetComponent<Animator> ();
 		playa = GameObject.FindWithTag ("Player").gameObject;
 		manager = GameObject.Find ("GameManager").GetComponent<GameManager>();
 	}
@@ -31,7 +33,7 @@ public class EnemyTeteChercheuse : EnemyScript {
 			StartCoroutine (coll.gameObject.GetComponent<ShotScript> ().startEnd ());
 			if (this.pv <= 0) {
 				manager.updateScore (scoreValue);
-				Destroy (this.gameObject);
+				StartCoroutine (launchDeath ());
 			}
 		} else if (coll.gameObject.tag == "startMob") {
 			if (playa != null)
@@ -43,5 +45,12 @@ public class EnemyTeteChercheuse : EnemyScript {
 			Destroy (this.gameObject);
 		}
 
+	}
+
+	public IEnumerator launchDeath(){
+		anim.SetBool ("isDead", true);
+		//this.transform.localScale = new Vector3 (0.4f, 0.4f);
+		yield return new WaitForSeconds (0.2f);
+		Destroy (this.gameObject);
 	}
 }

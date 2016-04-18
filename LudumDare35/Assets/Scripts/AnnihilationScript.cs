@@ -24,7 +24,7 @@ public class AnnihilationScript : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D coll)
 	{
-		if (coll.gameObject.name.Contains("Clone") && coll.gameObject.tag != "Player" && coll.gameObject.tag!="TIRPlayer") {
+		if (coll.gameObject.name.Contains("Clone") && coll.gameObject.tag != "Player" /*&& coll.gameObject.tag!="TIRPlayer"*/) {
 			Destroy (coll.gameObject);
 		}
 	}
