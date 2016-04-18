@@ -58,4 +58,14 @@ public class SpawnChief : MonoBehaviour {
 			break;
 		}
 	}
+
+	void OnPauseGame(){
+		this.enabled = false;
+		playerIsDead = true;
+	}
+
+	void OnResumeGame(){
+		this.enabled = true;
+		playerIsDead = false;
+	}
 }

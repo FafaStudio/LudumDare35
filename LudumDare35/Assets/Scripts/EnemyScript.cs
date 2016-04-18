@@ -23,4 +23,12 @@ public class EnemyScript : MonoBehaviour {
 			}
 		}
 	}
+
+	void OnPauseGame(){
+		this.enabled = false;
+	}
+
+	void OnResumeGame(){
+		this.enabled = true;
+	}
 }

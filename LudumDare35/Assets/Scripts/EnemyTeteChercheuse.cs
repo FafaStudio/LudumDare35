@@ -7,6 +7,8 @@ public class EnemyTeteChercheuse : EnemyScript {
 	private bool cherche = false;
 	private Animator anim;
 
+	private Vector2 savedVelocity;
+
 	void Awake () {
 		anim = this.GetComponent<Animator> ();
 		playa = GameObject.FindWithTag ("Player").gameObject;
@@ -20,10 +22,11 @@ public class EnemyTeteChercheuse : EnemyScript {
 	void Update(){
 		if (playa == null)
 			return;
-		if (cherche)
-		this.GetComponent<Rigidbody2D> ().velocity = (playa.transform.position - this.transform.position).normalized * 5f;
-		this.transform.rotation = Quaternion.Euler (0f, 0f, 180 + (Mathf.Atan2((playa.transform.position.y - this.transform.position.y), (playa.transform.position.x - this.transform.position.x)) * Mathf.Rad2Deg));
-
+		if (cherche) {
+			this.GetComponent<Rigidbody2D> ().velocity = (playa.transform.position - this.transform.position).normalized * 5f;
+			savedVelocity = this.GetComponent<Rigidbody2D> ().velocity;
+			this.transform.rotation = Quaternion.Euler (0f, 0f, 180 + (Mathf.Atan2 ((playa.transform.position.y - this.transform.position.y), (playa.transform.position.x - this.transform.position.x)) * Mathf.Rad2Deg));
+		}
 	}
 	
 	public void OnTriggerEnter2D(Collider2D coll)
@@ -52,5 +55,16 @@ public class EnemyTeteChercheuse : EnemyScript {
 		//this.transform.localScale = new Vector3 (0.4f, 0.4f);
 		yield return new WaitForSeconds (0.2f);
 		Destroy (this.gameObject);
+	}
+
+	void OnPauseGame(){
+		savedVelocity = this.GetComponent<Rigidbody2D> ().velocity;
+		this.GetComponent<Rigidbody2D> ().velocity = new Vector2 (0f, 0f);
+		this.enabled = false;
+	}
+
+	void OnResumeGame(){
+		this.GetComponent<Rigidbody2D> ().velocity = savedVelocity;
+		this.enabled = true;
 	}
 }

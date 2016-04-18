@@ -60,7 +60,6 @@
      <Compile Include="Assets\Scripts\SpawnChief.cs" />
      <Compile Include="Assets\Scripts\SpawnerArcCercleScript.cs" />
      <Compile Include="Assets\Scripts\SpawnerManager.cs" />
-     <Compile Include="Assets\Scripts\TirVersHerosScript.cs" />
      <Compile Include="Assets\Scripts\WeaponManager.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>

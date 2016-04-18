@@ -11,9 +11,11 @@ public class ShotScript : MonoBehaviour {
 
 	private bool isTouching = false;
 
+	private Vector2 savedVelocity;
+
 	void Start()
 	{
-		Destroy(gameObject, 3);
+		savedVelocity = this.GetComponent<Rigidbody2D> ().velocity;
 	}
 
 	void Update(){
@@ -42,5 +44,16 @@ public class ShotScript : MonoBehaviour {
 		}
 		yield return new WaitForSeconds (0.005f);
 		isTouching = true;
+	}
+
+	void OnPauseGame(){
+		savedVelocity = this.GetComponent<Rigidbody2D> ().velocity;
+		this.GetComponent<Rigidbody2D> ().velocity = new Vector2 (0f, 0f);
+		this.enabled = false;
+	}
+
+	void OnResumeGame(){
+		this.GetComponent<Rigidbody2D> ().velocity = savedVelocity;
+		this.enabled = true;
 	}
 }

@@ -55,4 +55,12 @@ public class SpawnerArcCercleScript : MonoBehaviour {
 		positionXSpawn = Random.Range (6f, 10f);
 		Actif = true;
 	}
+
+	void OnPauseGame(){
+		this.enabled = false;
+	}
+
+	void OnResumeGame(){
+		this.enabled = true;
+	}
 }

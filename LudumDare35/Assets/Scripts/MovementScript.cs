@@ -6,6 +6,9 @@ public class MovementScript : MonoBehaviour
 
 	public Vector2 speed;
 
+	public float savedSpeedX;
+	public float savedSpeedY;
+
 	public Vector2 direction;
 
 	private Vector2 movement;
@@ -24,5 +27,17 @@ public class MovementScript : MonoBehaviour
 	void FixedUpdate()
 	{
 		body.velocity = movement;
+	}
+
+	void OnPauseGame(){
+		savedSpeedX = speed.x;
+		savedSpeedY = speed.y;
+		speed.x = 0f;
+		speed.y = 0f;
+	}
+
+	void OnResumeGame(){
+		speed.x = savedSpeedX;
+		speed.y = savedSpeedY;
 	}
 }

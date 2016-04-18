@@ -62,4 +62,12 @@ public class SpawnerManager : MonoBehaviour {
 		this.chronoBasicEnemy = setterChronoEnemy;
 		isActiveMob = true;
 	}
+
+	void OnPauseGame(){
+		this.enabled = false;
+	}
+
+	void OnResumeGame(){
+		this.enabled = true;
+	}
 }

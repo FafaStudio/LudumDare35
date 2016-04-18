@@ -24,4 +24,12 @@ public class BasicEnemy : EnemyScript {
 			weapon.shootingRate = maxRate;
 		}
 	}
+
+	void OnPauseGame(){
+		this.enabled = false;
+	}
+
+	void OnResumeGame(){
+		this.enabled = true;
+	}
 }

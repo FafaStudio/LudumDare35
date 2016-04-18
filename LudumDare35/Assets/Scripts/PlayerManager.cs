@@ -171,5 +171,13 @@ public class PlayerManager : MonoBehaviour {
 			animManager.SetBool("Firing", false);
 	} 
 
+	void OnPauseGame(){
+		this.enabled = false;
+	}
+
+	void OnResumeGame(){
+		this.enabled = true;
+	}
+
 }
 
