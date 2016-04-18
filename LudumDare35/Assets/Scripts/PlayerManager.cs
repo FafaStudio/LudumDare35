@@ -112,7 +112,6 @@ public class PlayerManager : MonoBehaviour {
 				StartCoroutine (launchFinalDeath ());
 			}
 		}
-
 	}
 
 	public IEnumerator launchShapeshift(){
