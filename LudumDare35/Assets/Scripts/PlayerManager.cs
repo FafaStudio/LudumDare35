@@ -30,6 +30,8 @@ public class PlayerManager : MonoBehaviour {
 
 	private SpawnChief spawner;
 
+	public GameObject explosion;
+
 
 	//AWAKE, START, UPDATE...______________________________________________________________________________________________
 
@@ -97,7 +99,9 @@ public class PlayerManager : MonoBehaviour {
 		if (this.curPv <= 0) {
 			if (nextTransformation != null) {
 				spawner.maxCompteurWave = 5f;
+				var explo = Instantiate (explosion.transform, this.transform.position, Quaternion.identity) as Transform;
 				Instantiate (nextTransformation, this.transform.position, Quaternion.identity);
+				//Destroy(explo.gameObject);
 				Destroy (this.gameObject);
 			} else if (levelHero == 3) {
 				StartCoroutine (launchDeath ());
