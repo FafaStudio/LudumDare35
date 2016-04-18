@@ -61,7 +61,7 @@ public class EnemyArcCercleScript : EnemyScript {
 				if (playa != null)
 					instantiatedProjectile.GetComponent<Rigidbody2D> ().velocity = (playa.transform.position - transform.position).normalized * 8f;
 				else
-					instantiatedProjectile.GetComponent<Rigidbody2D> ().velocity = new Vector2 (-5f, 0f);
+					instantiatedProjectile.GetComponent<Rigidbody2D> ().velocity = new Vector2 (-10f, 0f);
 			}
 		}
 	}

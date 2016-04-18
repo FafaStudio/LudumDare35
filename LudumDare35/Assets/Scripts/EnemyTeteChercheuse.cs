@@ -18,7 +18,7 @@ public class EnemyTeteChercheuse : EnemyScript {
 	{
 		if (coll.gameObject.tag == "TIRPlayer") {
 			this.pv -= 1;
-			Destroy (coll.gameObject);
+			StartCoroutine (coll.gameObject.GetComponent<ShotScript> ().startEnd ());
 			if (this.pv <= 0) {
 				manager.updateScore (scoreValue);
 				Destroy (this.gameObject);

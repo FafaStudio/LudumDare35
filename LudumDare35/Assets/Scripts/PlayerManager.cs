@@ -130,7 +130,7 @@ public class PlayerManager : MonoBehaviour {
 		}
 		 else if (col.gameObject.tag == "TIREnemy") {
 			takeDamage (col.GetComponent<ShotScript> ().damage);
-			Destroy (col.gameObject);
+			StartCoroutine (col.gameObject.GetComponent<ShotScript> ().startEnd ());
 		}
 	}
 
