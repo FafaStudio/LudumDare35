@@ -4,7 +4,7 @@ using System.Collections;
 public class AnnihilationScript : MonoBehaviour {
 
 
-	private float chrono = 2;
+	private float chrono = 1;
 
 	// Use this for initialization
 	void Start () {
@@ -24,8 +24,7 @@ public class AnnihilationScript : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D coll)
 	{
-		if (coll.gameObject.name.Contains("Clone") && coll.gameObject.tag != "Player") {
-			print (coll.name);
+		if (coll.gameObject.name.Contains("Clone") && coll.gameObject.tag != "Player" && coll.gameObject.tag!="TIRPlayer") {
 			Destroy (coll.gameObject);
 		}
 	}

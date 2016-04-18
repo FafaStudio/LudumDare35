@@ -28,7 +28,7 @@ public class ShotScript : MonoBehaviour {
 	}
 
 	public IEnumerator startEnd(){
-		if ((touchSprite == null)||(this==null))
+		if (this.gameObject == null)
 			yield return null;
 	
 		this.GetComponent<Rigidbody2D> ().velocity = new Vector2 (0f, 0f);
@@ -36,8 +36,10 @@ public class ShotScript : MonoBehaviour {
 			Destroy (this.GetComponent<Animator> ());
 		}
 		//this.transform.localScale = new Vector3(1f, 1f,1f);
-		this.GetComponent<SpriteRenderer> ().sortingLayerName = "EndMunition";
-		this.GetComponent<SpriteRenderer> ().sprite = touchSprite;
+		if (touchSprite != null) {
+			this.GetComponent<SpriteRenderer> ().sortingLayerName = "EndMunition";
+			this.GetComponent<SpriteRenderer> ().sprite = touchSprite;
+		}
 		yield return new WaitForSeconds (0.005f);
 		isTouching = true;
 	}

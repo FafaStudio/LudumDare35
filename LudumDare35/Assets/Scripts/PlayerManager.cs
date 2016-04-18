@@ -30,14 +30,17 @@ public class PlayerManager : MonoBehaviour {
 
 	private SpawnChief spawner;
 
+	public CameraManager camera;
 	public GameObject explosion;
 
 
 	//AWAKE, START, UPDATE...______________________________________________________________________________________________
-
-	void Start () {
+	void Awake(){
 		spawner = GameObject.Find("Spawner").GetComponent<SpawnChief>();
 		uiPlayer = GameObject.Find ("UI").GetComponent<PlayerUI> ();
+		camera = GameObject.FindWithTag ("MainCamera").GetComponent<CameraManager> ();
+	}
+	void Start () {
 		animManager = this.GetComponent<Animator> ();
 		body = GetComponent<Rigidbody2D> ();
 		weapon = this.GetComponents<WeaponManager> ();
@@ -66,12 +69,16 @@ public class PlayerManager : MonoBehaviour {
 	//MOVEMENT________________________________________________________________________________________________________________
 
 	private void calculMovement(){
-		if (Input.GetKey (KeyCode.D))
+		if (Input.GetKey (KeyCode.D)) {
+			animManager.SetInteger ("Position", 1);
 			speed.x = movementX;
-		else if (Input.GetKey (KeyCode.Q))
+		} else if (Input.GetKey (KeyCode.Q)) {
+			animManager.SetInteger ("Position", -1);
 			speed.x = -movementX;
-		else
+		} else {
+			animManager.SetInteger ("Position", 0);
 			speed.x = 0;
+		}
 
 		if (Input.GetKey (KeyCode.Z))
 			speed.y = movementY;
@@ -89,6 +96,7 @@ public class PlayerManager : MonoBehaviour {
 	public void takeDamage(int nbr)
 	{
 		this.curPv -= nbr;
+		camera.setShake (0.3f);
 		uiPlayer.updateLifeUI (curPv, maxPv);
 		testEstMort ();
 
@@ -98,19 +106,25 @@ public class PlayerManager : MonoBehaviour {
 	{
 		if (this.curPv <= 0) {
 			if (nextTransformation != null) {
-				spawner.maxCompteurWave = 5f;
-				var explo = Instantiate (explosion.transform, this.transform.position, Quaternion.identity) as Transform;
-				Instantiate (nextTransformation, this.transform.position, Quaternion.identity);
-				//Destroy(explo.gameObject);
-				Destroy (this.gameObject);
+				StartCoroutine (launchShapeshift ());
 			} else if (levelHero == 3) {
-				StartCoroutine (launchDeath ());
+				StartCoroutine (launchFinalDeath ());
 			}
 		}
 
 	}
 
-	public IEnumerator launchDeath(){
+	public IEnumerator launchShapeshift(){
+		camera.setShake (1.2f);
+		spawner.maxCompteurWave = 5f;
+		var explo = Instantiate (explosion.transform, this.transform.position, Quaternion.identity) as Transform;
+		animManager.SetBool ("isDead", true);
+		yield return new WaitForSeconds (0.3f);
+		Instantiate (nextTransformation, this.transform.position, Quaternion.identity);
+		Destroy (this.gameObject);
+	}
+
+	public IEnumerator launchFinalDeath(){
 		isDead = true;
 		animManager.SetBool ("isDead", true);
 		spawner.playerIsDead = true;
