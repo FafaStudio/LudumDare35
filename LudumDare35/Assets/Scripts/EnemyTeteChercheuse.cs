@@ -16,10 +16,10 @@ public class EnemyTeteChercheuse : EnemyScript {
 	}
 
 	void Update(){
-
+		if (playa == null)
+			return;
 		if (cherche)
-			this.GetComponent<Rigidbody2D> ().velocity = (playa.transform.position - this.transform.position).normalized * 5f;
-
+		this.GetComponent<Rigidbody2D> ().velocity = (playa.transform.position - this.transform.position).normalized * 5f;
 		this.transform.rotation = Quaternion.Euler (0f, 0f, 180 + (Mathf.Atan2((playa.transform.position.y - this.transform.position.y), (playa.transform.position.x - this.transform.position.x)) * Mathf.Rad2Deg));
 
 	}

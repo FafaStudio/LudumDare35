@@ -65,10 +65,10 @@ public class WeaponManager : MonoBehaviour
 			bullPosition = new Vector3 (transform.position.x + 1.2f, transform.position.y - 0.3f, 0f);
 			return bullPosition;
 		case 2:
-			bullPosition = new Vector3 (transform.position.x + 1f, transform.position.y - 0.1f, 0f);
+			bullPosition = new Vector3 (transform.position.x + 1.55f, transform.position.y - 0.65f, 0f);
 			return bullPosition;
 		case 3:
-			bullPosition = new Vector3 (transform.position.x + 1f, transform.position.y +0.5f, 0f);
+			bullPosition = new Vector3 (transform.position.x + 2f, transform.position.y +0.5f, 0f);
 			return bullPosition;
 		}
 		return bullPosition;

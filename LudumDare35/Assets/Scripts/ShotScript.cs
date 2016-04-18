@@ -28,7 +28,7 @@ public class ShotScript : MonoBehaviour {
 	}
 
 	public IEnumerator startEnd(){
-		if (touchSprite == null)
+		if ((touchSprite == null)||(this==null))
 			yield return null;
 	
 		this.GetComponent<Rigidbody2D> ().velocity = new Vector2 (0f, 0f);

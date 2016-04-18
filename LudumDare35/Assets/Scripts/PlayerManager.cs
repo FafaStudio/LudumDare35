@@ -39,7 +39,7 @@ public class PlayerManager : MonoBehaviour {
 		animManager = this.GetComponent<Animator> ();
 		body = GetComponent<Rigidbody2D> ();
 		weapon = this.GetComponents<WeaponManager> ();
-		if (levelHero != 3) {
+		if (levelHero <2) {
 			for (int i = 0; i < weapon.Length; i++) {
 				this.weapon [i].shotPrefab.localScale = new Vector3 (1f, 1f, 1f);
 			}
@@ -119,7 +119,7 @@ public class PlayerManager : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D col){
 		if (col.gameObject.tag == "PowerUp") {
 			cptPowerUp++;
-			if (cptPowerUp > 4)
+			if ((cptPowerUp > 4)||(levelHero>2))
 				return;
 			spawner.maxCompteurWave = 5f - cptPowerUp;
 			for (int i = 0; i < weapon.Length; i++) {
