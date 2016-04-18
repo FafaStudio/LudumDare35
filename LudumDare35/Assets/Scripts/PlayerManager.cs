@@ -30,7 +30,7 @@ public class PlayerManager : MonoBehaviour {
 
 	private SpawnChief spawner;
 
-	public CameraManager camera;
+	private CameraManager camera;
 	public GameObject explosion;
 
 
@@ -120,12 +120,13 @@ public class PlayerManager : MonoBehaviour {
 		var explo = Instantiate (explosion.transform, this.transform.position, Quaternion.identity) as Transform;
 		animManager.SetBool ("isDead", true);
 		yield return new WaitForSeconds (0.3f);
-		Instantiate (nextTransformation, this.transform.position, Quaternion.identity);
+		GameObject nextTransfo = Instantiate (nextTransformation, this.transform.position, Quaternion.identity) as GameObject;
 		Destroy (this.gameObject);
 	}
 
 	public IEnumerator launchFinalDeath(){
 		isDead = true;
+		var explo = Instantiate (explosion.transform, this.transform.position, Quaternion.identity) as Transform;
 		animManager.SetBool ("isDead", true);
 		spawner.playerIsDead = true;
 		yield return new WaitForSeconds (0.5f);
