@@ -40,16 +40,38 @@ public class WeaponManager : MonoBehaviour
 					shotTransform.position = bullPosition;
 				}
 			}
-
-			// On saisit la direction pour le mouvement
-			MovementScript move = shotTransform.gameObject.GetComponent<MovementScript>();
-			if (move != null)
-			{
-				if (shot.isEnemyShot)
-					return;
-				move.direction = this.transform.right; // ici la droite sera le devant de notre objet
-			}
 		}
+	}
+
+	public void AttackWithCustomPosition(int level){
+		if (CanAttack) {
+			shootCooldown = shootingRate;
+			var shotTransform = Instantiate (shotPrefab) as Transform;
+			shotTransform.position = transform.position;
+
+			ShotScript shot = shotTransform.gameObject.GetComponent<ShotScript> ();
+			if (shot != null)
+				shotTransform.position = chooseStartPosition (level);
+		}
+	}
+
+	public Vector3 chooseStartPosition(int level){
+		Vector3 bullPosition = new Vector3 (transform.position.x + 1f, transform.position.y, 0f);;
+		switch(level){
+		case 0:
+			bullPosition = new Vector3 (transform.position.x + 1f, transform.position.y - 0.1f, 0f);
+			return bullPosition;
+		case 1:
+			bullPosition = new Vector3 (transform.position.x + 1.2f, transform.position.y - 0.3f, 0f);
+			return bullPosition;
+		case 2:
+			bullPosition = new Vector3 (transform.position.x + 1f, transform.position.y - 0.1f, 0f);
+			return bullPosition;
+		case 3:
+			bullPosition = new Vector3 (transform.position.x + 1f, transform.position.y +0.5f, 0f);
+			return bullPosition;
+		}
+		return bullPosition;
 	}
 
 	public bool CanAttack

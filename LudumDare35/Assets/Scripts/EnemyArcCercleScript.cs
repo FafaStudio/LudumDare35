@@ -10,26 +10,27 @@ public class EnemyArcCercleScript : EnemyScript {
 	public Transform tirEnemy;
 	private float chrono;
 	private float maxChrono = 0.5f;
-	private GameObject playa;
 
+	protected GameObject playa;
 
+	private Animator anim;
 
 	void Awake () {
-		playa = GameObject.Find ("Player").gameObject;
+		anim = this.GetComponent<Animator> ();
+		playa = GameObject.FindWithTag ("Player").gameObject;
+		manager = GameObject.Find ("GameManager").GetComponent<GameManager>();
 	}
-	// Use this for initialization
+
 	void Start () {
 		x = 0.5f;
 		y = 0;
 		xDirection = false;
 		this.pv = 5;
 		chrono = maxChrono;
-
 	}
-	
-	// Update is called once per frame
-	void Update () {
 
+
+	void Update () {
 		if (!xDirection) {
 			x = x + 0.02f;
 			if (x >2f) {
@@ -40,41 +41,34 @@ public class EnemyArcCercleScript : EnemyScript {
 			x = x - 0.02f;
 
 		}
-
 		y = y + 0.01f;
-
-
 		if ((x < 0) && (y > 10)) {
 			Destroy (this.gameObject);
-
 		}
-
 		if (BasEnHaut) {
 			doDeplacementEnemyArcCercle (new Vector3 (-x, y, 1));
 		} else {
 			doDeplacementEnemyArcCercle (new Vector3 (-x, -y, 1));
 		}
 		chrono -= Time.deltaTime;
-
 		if ((this.transform.position.x < 7.5f) && (this.transform.position.x > -7.5f) && (this.transform.position.y < 4) && (this.transform.position.y > -4)) {
-
 			if (chrono <= 0) {
-				var shotTransformEnemy = Instantiate(tirEnemy, this.transform.position, Quaternion.identity) as Transform;
-<<<<<<< HEAD
-				shotTransformEnemy.GetComponent<MovementScript> ().direction = new Vector2(playa.transform.position.x,playa.transform.position.y);
-=======
-				//print (new Vector2(playa.transform.position.x, playa.transform.position.y));
->>>>>>> 98d35f9e55fe77d0ac3456417c90654dff0566fe
+				anim.SetTrigger ("Firing");
 				chrono = maxChrono;
+				var instantiatedProjectile = Instantiate(tirEnemy,transform.position,transform.rotation)as Transform;
+				//instantiatedProjectile.LookAt (playa.transform);
+				//instantiatedProjectile.rotation = Quaternion.Euler (-instantiatedProjectile.rotation.x, -instantiatedProjectile.rotation.y,0f);
+				if (playa != null)
+					instantiatedProjectile.GetComponent<Rigidbody2D> ().velocity = (playa.transform.position - transform.position).normalized * 8f;
+				else
+					instantiatedProjectile.GetComponent<Rigidbody2D> ().velocity = new Vector2 (-5f, 0f);
 			}
 		}
-	
 	}
 
 
 
 	public void doDeplacementEnemyArcCercle(Vector3 direction) {
-
 		transform.Translate (direction * 0.025f);
 	}
 }

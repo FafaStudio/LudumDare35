@@ -9,6 +9,11 @@ public class ShotScript : MonoBehaviour {
 
 	void Start()
 	{
-		Destroy(gameObject, 2);
+		Destroy(gameObject, 3);
+	}
+
+	void OnTriggerEnter2D(Collider2D col){
+		if (col.gameObject.tag == "EndBullet")
+			Destroy (this.gameObject);
 	}
 }

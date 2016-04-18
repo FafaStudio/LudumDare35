@@ -6,7 +6,6 @@ public class MovementScript : MonoBehaviour
 
 	public Vector2 speed;
 
-
 	public Vector2 direction;
 
 	private Vector2 movement;
@@ -24,7 +23,6 @@ public class MovementScript : MonoBehaviour
 
 	void FixedUpdate()
 	{
-		// Application du mouvement
 		body.velocity = movement;
 	}
 }
