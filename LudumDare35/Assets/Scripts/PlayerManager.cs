@@ -33,12 +33,15 @@ public class PlayerManager : MonoBehaviour {
 	private CameraManager camera;
 	public GameObject explosion;
 
+	private GameManager manager;
+
 
 	//AWAKE, START, UPDATE...______________________________________________________________________________________________
 	void Awake(){
 		camera = GameObject.FindWithTag ("MainCamera").GetComponent<CameraManager> ();
 		spawner = GameObject.Find("Spawner").GetComponent<SpawnChief>();
 		uiPlayer = GameObject.Find ("UI").GetComponent<PlayerUI> ();
+		manager = GameObject.Find ("GameManager").GetComponent<GameManager>();
 		//camera = GameObject.FindWithTag ("MainCamera").GetComponent<CameraManager> ();
 	}
 	void Start () {
@@ -132,6 +135,7 @@ public class PlayerManager : MonoBehaviour {
 		animManager.SetBool ("isDead", true);
 		spawner.playerIsDead = true;
 		yield return new WaitForSeconds (0.5f);
+		uiPlayer.launchGameOver (manager.score);
 		Destroy (this.gameObject);
 	}
 

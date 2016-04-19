@@ -52,6 +52,7 @@
      <Compile Include="Assets\Scripts\EnemyScript.cs" />
      <Compile Include="Assets\Scripts\EnemyTeteChercheuse.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />
+     <Compile Include="Assets\Scripts\MainMenuUI.cs" />
      <Compile Include="Assets\Scripts\MovementScript.cs" />
      <Compile Include="Assets\Scripts\PlayerManager.cs" />
      <Compile Include="Assets\Scripts\PlayerUI.cs" />
@@ -61,6 +62,7 @@
      <Compile Include="Assets\Scripts\SpawnerArcCercleScript.cs" />
      <Compile Include="Assets\Scripts\SpawnerManager.cs" />
      <Compile Include="Assets\Scripts\WeaponManager.cs" />
+     <Compile Include="Assets\videoScript.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
