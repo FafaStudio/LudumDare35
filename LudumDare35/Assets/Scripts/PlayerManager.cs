@@ -33,13 +33,10 @@ public class PlayerManager : MonoBehaviour {
 	private CameraManager camera;
 	public GameObject explosion;
 
-<<<<<<< HEAD
 	private GameManager manager;
 
-=======
 	public AudioClip musicPerso;
 	public AudioClip zikMort;
->>>>>>> 9064d30631352dc2fa2298f0a5384f5fdf1d4882
 
 	//AWAKE, START, UPDATE...______________________________________________________________________________________________
 	void Awake(){
@@ -115,15 +112,16 @@ public class PlayerManager : MonoBehaviour {
 	{
 		if (this.curPv <= 0) {
 			if (nextTransformation != null) {
+				manager.GetComponent<AudioSource> ().clip = musicPerso;
+				manager.GetComponent<AudioSource> ().loop = true;
+				manager.GetComponent<AudioSource> ().Play ();
 				StartCoroutine (launchShapeshift ());
-				GameObject.Find ("GameManager").GetComponent<AudioSource> ().clip = musicPerso;
-				GameObject.Find ("GameManager").GetComponent<AudioSource> ().Play ();
-				GameObject.Find ("GameManager").GetComponent<AudioSource> ().loop = true;
-				print (musicPerso.name);
 			} else if (levelHero == 3) {
 				StartCoroutine (launchFinalDeath ());
-				GameObject.Find ("GameManager").GetComponent<AudioSource> ().clip = zikMort;
-				GameObject.Find ("GameManager").GetComponent<AudioSource> ().Play ();
+				AudioSource audio = GameObject.Find ("GameManager").GetComponent<AudioSource> ();
+				audio.clip = zikMort;
+				audio.loop = false;
+				audio.Play ();
 			}
 		}
 	}
